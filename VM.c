@@ -24,7 +24,7 @@ int program[] = {
 			  	0x4402,//print what is in register 2
 			  	0x0000};//halt
 
-//Returns the content of the program at the line the program counter is pointing on
+//Gets the content of the program at the line the program counter is pointing at
 int fetch(){
     return program[pcounter++];    
 }
