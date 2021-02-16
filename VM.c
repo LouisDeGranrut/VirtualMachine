@@ -15,14 +15,12 @@ int immediate= 0;
 
 //The Program:
 //0x + InstructionNumber + Parameter in hex
-int program[] = {
-				0x1064,//in register 0, put 100
-			  	0x11C8,//in register 1, put 200
-			  	0x2201,//add register 0 and 1 in register 2
-			  	0x4402,//print what is in register 2
-			  	0x3201,//subtract 0 and 
-			  	0x4402,//print what is in register 2
-			  	0x6603,//jump to line 3
+int program[] = {//example of a for loop
+				0x1201,//r2 = 1
+			  	0x1105,//r1 = 5
+			  	0x3112,//r0 = r1-r2
+			  	0x4400,//print r0
+			  	0x7102,//jump to line 2 if r1>r2 
 			  	0x0000};//halt
 
 //Gets the content of the program at the line the program counter is pointing at
@@ -47,40 +45,64 @@ void eval()
   {
     case 0:
       /* halt */
+      printf("%d ",pcounter);
       printf( "halt\n" );
       running = 0;
       break;
     case 1:
       /* load reg+value*/
+      printf("%d ",pcounter);
       printf( "load r%d #%d\n", reg1, immediate );
       registers[ reg1 ] = immediate;
       break;
     case 2:
       /* add */
+      printf("%d ",pcounter);
       printf( "add  r%d r%d r%d\n", reg1, reg2, reg3 );
       registers[ reg1 ] = registers[ reg2 ] + registers[reg3 ];
       break;
     case 3:
       /* subtract */
+      printf("%d ",pcounter);
       printf( "sub  r%d r%d r%d\n", reg1, reg2, reg3 );
       registers[ reg1 ] = registers[ reg2 ] - registers[reg3 ];
       break;
     case 4:
       /* print value in register */
+      printf("%d ",pcounter);
       printf( "show r%d: ", immediate);
       printf("%d\n",registers[ immediate ]);
       break;
     case 5:
       /* resets program counter */
+      printf("%d ",pcounter);
       printf( "Reset program counter: ");
       pcounter = 0;
       break;
     case 6:
-      /* jump to set adress*/
-      printf( "jump to r%d: ", immediate);
+      /* jump to set address*/
+      printf("%d ",pcounter);
+      printf( "jump to line %d: ", immediate);
       pcounter = immediate;
       break;
+    case 7:
+      /* jump to set address if register a > register b*/
+      printf("%d ",pcounter);
+      printf( "cjump  r%d > r%d line %d\n", reg1, reg2, immediate );
+      if(registers[ reg1 ] > registers[ reg2 ]){
+	  	pcounter = immediate;	
+	  }
+      break;
+    case 8:
+      /* jump to set address if register a < register b*/
+      printf("%d ",pcounter);
+      printf( "cjump  r%d < r%d line %d\n", reg1, reg2, immediate );
+      if(registers[ reg1 ] < registers[ reg2 ]){
+	  	pcounter = immediate;	
+	  }
+      break;
     default:
+    	printf("%d ",pcounter);
     	printf("Error in line\n");
     	break;
   }
