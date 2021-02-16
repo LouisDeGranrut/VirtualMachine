@@ -22,6 +22,7 @@ int program[] = {
 			  	0x4402,//print what is in register 2
 			  	0x3201,//subtract 0 and 
 			  	0x4402,//print what is in register 2
+			  	0x6603,
 			  	0x0000};//halt
 
 //Gets the content of the program at the line the program counter is pointing at
@@ -68,6 +69,16 @@ void eval()
       /* print value in register */
       printf( "show r%d: ", immediate);
       printf("%d\n",registers[ immediate ]);
+      break;
+    case 5:
+      /* resets program counter */
+      printf( "Reset program counter: ");
+      pcounter = 0;
+      break;
+    case 6:
+      /* jump to set adress*/
+      printf( "jump to r%d: ", immediate);
+      pcounter = immediate;
       break;
     default:
     	printf("Error in line\n");
