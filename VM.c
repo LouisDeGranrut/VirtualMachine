@@ -22,7 +22,7 @@ int program[] = {
 			  	0x4402,//print what is in register 2
 			  	0x3201,//subtract 0 and 
 			  	0x4402,//print what is in register 2
-			  	0x6603,
+			  	0x6603,//jump to line 3
 			  	0x0000};//halt
 
 //Gets the content of the program at the line the program counter is pointing at
