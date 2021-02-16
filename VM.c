@@ -16,8 +16,8 @@ int immediate= 0;
 //The Program:
 //0x + InstructionNumber + Parameter in hex
 int program[] = {//example of a for loop
-				0x1201,//r2 = 1
-			  	0x1105,//r1 = 5
+				0x1201,//r2 = 1 -> for(int i = 1;
+			  	0x1109,//r1 = 5 ->  i< 5; i++)
 			  	0x3112,//r0 = r1-r2
 			  	0x4400,//print r0
 			  	0x7102,//jump to line 2 if r1>r2 
@@ -58,13 +58,13 @@ void eval()
     case 2:
       /* add */
       printf("%d ",pcounter);
-      printf( "add  r%d r%d r%d\n", reg1, reg2, reg3 );
+      printf( "add  r%d = r%d + r%d\n", reg1, reg2, reg3 );
       registers[ reg1 ] = registers[ reg2 ] + registers[reg3 ];
       break;
     case 3:
       /* subtract */
       printf("%d ",pcounter);
-      printf( "sub  r%d r%d r%d\n", reg1, reg2, reg3 );
+      printf( "sub  r%d = r%d - r%d\n", reg1, reg2, reg3 );
       registers[ reg1 ] = registers[ reg2 ] - registers[reg3 ];
       break;
     case 4:
